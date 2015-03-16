@@ -1,0 +1,44 @@
+PROGRAM PROG_bubble
+
+--CONSTANTS DECLARE
+
+--VARIABLES DECLARE
+    var p0, p1, p2, p3 : position
+
+--IMPORT/EXPORT VARIABLES
+
+--IMPORT/EXPORT ROUTINE
+    ROUTINE toolframe (AI_tool,AI_frame,AI_arm : integer()) exported from tt_tool global
+
+--LOCAL ROUTIN
+
+
+BEGIN --PROG_bubble
+    
+    CYCLE
+        --declare the tool,toolframe,arm
+        toolframe(1,1,1)
+        
+        --setup the speed and MOVEFLY parameters 
+        $ARM_OVR := 20
+        $FLY_TYPE := FLY_NORM
+        $FLY_PER := 50
+        
+        -- move the ARM in home position and wait 5sec
+        move to $CAL_SYS
+        delay 5000
+        
+        --move joint in p0 and slow down, move linear to p3
+        --wait 1,5sec and drai the soap
+        move to p0
+        $ARM_OVR := 10
+        move linear to p3
+        delay 1500
+        move to p0
+        
+        --set the speed to 20% and move to make the bubbles
+        $ARM_OVR := 20
+        movefly to p1 advance
+        move to p2
+    
+END PROG_bollicine
